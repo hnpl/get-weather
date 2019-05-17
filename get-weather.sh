@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #https://stackoverflow.com/questions/4774054/reliable-way-for-a-bash-script-to-get-the-full-path-to-itself
-SCRIPT_PATH=`$( cd "$(dirname $0)" ; pwd -P )`
+SCRIPT_PATH="$( cd "$(dirname $0)" ; pwd -P )"
 
 TEMPERATURE_FILE="temperature"
 PYTHON_FILE="get-weather.py"
