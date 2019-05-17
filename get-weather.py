@@ -10,7 +10,6 @@ import datetime
 # Workflow
 # Check if .requesttrack exists, if not, create one
 # Check if .temperature exists
-#   if it exists, check if we need to update it
 #   if not, create one
 
 relative_path = os.path.dirname(__file__)
@@ -27,21 +26,21 @@ else:
         num_requested = int(lines[0])
 
 
-update_temperature = False
+update_temperature = True
 temperature = 'error'
 now = datetime.datetime.now()
-if not os.path.isfile(temperature_file_path):
-    update_temperature = True
-else:
+#if not os.path.isfile(temperature_file_path):
+#    update_temperature = True
+#else:
     # read datetime from the file
-    with open(temperature_file_path,'r') as f:
-        lines = f.readlines()
-    past = datetime.datetime.strptime(lines[0].strip(), "%Y %m %d %H %M %S")
-    dtime = now - past
-    if dtime.seconds > 600:
-        update_temperature = True 
-    else:
-        temperature = lines[1].strip()
+#    with open(temperature_file_path,'r') as f:
+#        lines = f.readlines()
+#    past = datetime.datetime.strptime(lines[0].strip(), "%Y %m %d %H %M %S")
+#    dtime = now - past
+#    if dtime.seconds > 600:
+#        update_temperature = True 
+#    else:
+#        temperature = lines[1].strip()
 
 if update_temperature:
     url = "https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=csv&hoursBeforeNow=24&mostRecent=true&stationString=KEDU"
@@ -61,4 +60,4 @@ if update_temperature:
     with open(track_file_path, 'w') as f:
         f.write('%i' % (num_requested + 1))
 
-print(''.join([temperature, chr(176), 'C']))
+#print(''.join([temperature, chr(176), 'C']))
