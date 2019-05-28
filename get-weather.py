@@ -53,6 +53,10 @@ if update_temperature:
     line = line.split(',')
     if len(line) >= 6:
         temperature = line[5]
+    if temperature == "":
+        temperature = "---"
+    else:
+        temperature = "".join([temperature, chr(176), 'C'])
 
     with open(temperature_file_path, 'w') as f:
         f.write('%s\n%s' % (now.strftime("%Y %m %d %H %M %S"), temperature))
