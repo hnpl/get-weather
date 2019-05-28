@@ -22,4 +22,4 @@ else
 fi
 
 TEMPERATURE=`sed -n "2p" "$TEMPERATURE_PATH"`
-printf "%s%s" "$TEMPERATURE" "°C"
+printf "%s" "$TEMPERATURE"
